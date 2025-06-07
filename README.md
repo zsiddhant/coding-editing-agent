@@ -2,6 +2,8 @@
 
 A simple command-line agent framework in Go that connects to a local Ollama LLM (Large Language Model) via HTTP, supports tool-calling, and can be extended with custom tool definitions.
 
+Inspiration : https://ampcode.com/how-to-build-an-agent
+
 ## Features
 
 - Interactive chat interface with a local LLM (Ollama).
