@@ -1,0 +1,42 @@
+The research paper "Calvin: Fast Distributed Transactions for Partitioned Database Systems" (SIGMOD 2012) presents Calvin, a transaction scheduling and replication layer that enables high-throughput, ACID-compliant, distributed transactions over partitioned and replicated data systems.
+
+🔑 Key Ideas:
+Deterministic Execution:
+
+Calvin eliminates traditional distributed commit protocols (like 2PC) by deterministically pre-planning the order of transactions before execution.
+
+This reduces the contention footprint, allowing higher throughput, especially under high-contention workloads.
+
+Separation of Concerns:
+
+Calvin separates the system into three layers:
+
+Sequencing Layer: Assigns a global transaction order.
+
+Scheduling Layer: Uses deterministic concurrency control.
+
+Storage Layer: Executes reads/writes via a simple CRUD interface.
+
+Replication Support:
+
+Supports both asynchronous and Paxos-based synchronous replication.
+
+Ensures strong consistency across replicas by replicating transactional inputs, not effects.
+
+Disk-based Support:
+
+Unlike many in-memory deterministic systems, Calvin supports disk-resident data using a data prefetching mechanism during the planning phase.
+
+Scalability:
+
+Calvin achieves near-linear scalability on commodity hardware and demonstrated 500,000+ TPC-C transactions/sec on a 100-node Amazon EC2 cluster.
+
+Fault Tolerance:
+
+Relies on active replication and checkpointing (e.g., Zig-Zag algorithm) to recover without REDO logging.
+
+Trade-offs:
+
+Requires advanced knowledge of read/write sets for transactions.
+
+Handles dependent transactions using an Optimistic Lock Location Prediction (OLLP) scheme.
